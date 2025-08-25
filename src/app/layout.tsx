@@ -1,10 +1,18 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { Poppins, Inter } from 'next/font/google';
 import '@/styles/global.scss';
+import TopHeader from '@/components/topheader/TopHeader';
+import Header from '@/components/header/Header';
 
 const poppins = Poppins({
   variable: '--poppins',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+});
+
+const inter = Inter({
+  variable: '--inter',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
 });
 
@@ -20,7 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable}`}>{children}</body>
+      <body className={`${poppins.variable} ${inter.variable}`}>
+        <TopHeader />
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
